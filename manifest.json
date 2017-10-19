@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+  "name": "Recipe Extractor",
+  "version": "1.0",
+  "description": "Extracts recipes from webpages.",
+  "browser_action": {
+    "default_icon": "recipe_book.svg",
+    "default_title": "Extract Recipe"
+  },
+  "background": {
+    "scripts": ["fathom.js", "background.js"]
+  },
+  "applications": {
+    "gecko": {
+      "id": "recipe-extractor@mkelly.me"
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
