@@ -1,4 +1,4 @@
-let recipeHtml = null;
+let recipe = null;
 
 browser.browserAction.onClicked.addListener(() => {
   browser.tabs.executeScript({
@@ -7,16 +7,14 @@ browser.browserAction.onClicked.addListener(() => {
     return browser.tabs.executeScript({
       file: 'getRecipe.js',
     });
-  }).then(([newRecipeHtml]) => {
-    recipeHtml = newRecipeHtml;
+  }).then(([newRecipe]) => {
+    recipe = newRecipe;
     browser.tabs.create({
       url: '/showRecipe.html',
-    }).then(tab => {
-      browser.tabs.sendMessage(tab.id, {recipeHtml});
     });
   });
 });
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  sendResponse({recipeHtml});
+  sendResponse(recipe);
 });
